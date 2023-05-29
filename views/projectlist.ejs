@@ -1,0 +1,30 @@
+<!-- here we will display the projects -->
+<ul class="list-group list-group-flush">
+  <%if(projects.length==0){%>
+
+  <div>No added projects!!!!!</div>
+  <%}else{ for(let project of projects) { %>
+
+  <li class="list-group-item">
+    <ul style="list-style-type: none">
+      <div class="container">
+        <div class="row align-items-start">
+          <div class="col">
+            <li><h2><%=project.name%></h2></li>
+            <li><p><%=project.description%></p></li>
+            <span style="color: grey"><%=project.author%></span>
+          </div>
+          <div class="col">
+            <span
+              ><a href="/details?id=<%=project._id%>" class="btn btn-info"
+                >View Details</a
+              ></span
+            >
+          </div>
+        </div>
+      </div>
+    </ul>
+  </li>
+
+  <% }} %>
+</ul>

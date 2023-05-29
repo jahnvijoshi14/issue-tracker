@@ -1,0 +1,94 @@
+<!-- this is nav bar -->
+<nav class="navbar navbar-light bg-light">
+  <form class="container-fluid justify-content-start">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">ISSUE-TRACKER</div>
+        <div class="col-4"></div>
+        <div class="col-2">
+          <button
+            type="button"
+            class="btn btn-success"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            data-bs-whatever="@mdo"
+          >
+            Create Project
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</nav>
+
+<!-- this is the model to create projects -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create Project</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form action="/add" method="POST">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label"
+              >Project Name:</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              id="recipient-name"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label"
+              >Description:</label
+            >
+            <textarea
+              class="form-control"
+              name="description"
+              id="message-text"
+            ></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Author:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="author"
+              id="author-name"
+            />
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- this is code to display all projects in db -->
+
+<%-include("projectlist")%>

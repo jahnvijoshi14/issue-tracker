@@ -1,0 +1,54 @@
+<!-- this is the navbar -->
+<nav class="navbar navbar-light bg-light">
+  <form class="container-fluid justify-content-start">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">ISSUE-TRACKER</div>
+        <div class="col-4"></div>
+        <div class="col-2"></div>
+      </div>
+    </div>
+  </form>
+</nav>
+<!-- here we will see the results of issues on the basis of view all ,filter or search -->
+<%if(searchedIssue.length==0){%>
+
+<div>No added issues!!!!!</div>
+<a href="/details?id=<%=projectid%>" class="btn btn-secondary"
+  >Go Back</a
+>
+<%}else{ for(let data of searchedIssue) { %>
+
+<div class="card" style="width: 60rem ;  margin-right: 110px;margin-left:150px ; margin-top: 10px;">
+  <div style="height:43px ; background-color:rgb(93, 65, 65)"></div>
+  <div class="card-body">
+    
+    <h5 class="card-title"><%=data.title%></h5>
+    <h6 class="card-subtitle mb-2 text-muted">By:&nbsp; <%=data.author%></h6>
+    <p class="card-text"><%=data.description%></p>
+    
+    
+    <% if(data.labels.length>0) {%>
+      <span>Labels</span>
+      <ol>
+       <% for(let i=0;i<data.labels.length;i++){ %>
+      <li><%=data.labels[i]%></li>
+    
+      <%} %>
+    </ol>
+   <% }%>
+    
+    
+  </div>
+</div>
+
+ <% } %>
+<div class="container" style="margin-left:140px;margin-top: 10px;">
+ <a href="/details?id=<%=projectid%>" class="btn btn-secondary"
+  >Go Back</a
+>
+</div>
+<%} %>
+
+ 
+

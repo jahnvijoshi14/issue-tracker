@@ -1,0 +1,369 @@
+<!-- this is the nav for details -->
+<nav class="navbar navbar-light bg-light">
+  <form class="container-fluid justify-content-start">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">ISSUE-TRACKER</div>
+        <div class="col-4"></div>
+        <div class="col-2">
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            data-bs-whatever="@mdo"
+          >
+            Create Issue
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</nav>
+
+<!-- this is the model to create Issues -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create Issue</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form
+          action="/issue/createissue?id=<%=project._id%>
+          "
+          method="POST"
+        >
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">title:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="title"
+              id="recipient-name"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label"
+              >Description:</label
+            >
+            <textarea
+              class="form-control"
+              name="description"
+              id="message-text"
+            ></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Labels:</label>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="label"
+                value="bug"
+                id="flexCheckDefault"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                Bug
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="label"
+                value="ui improvements"
+                id="flexCheckChecked"
+              />
+              <label class="form-check-label" for="flexCheckChecked">
+                UI improvements
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="label"
+                value="Documentation"
+                id="flexCheckChecked"
+              />
+              <label class="form-check-label" for="flexCheckChecked">
+                Documentation
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="label"
+                value="Enhancement"
+                id="flexCheckChecked"
+              />
+              <label class="form-check-label" for="flexCheckChecked">
+                Enhancement
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="dublicate"
+                name="label"
+                id="flexCheckChecked"
+              />
+              <label class="form-check-label" for="flexCheckChecked">
+                Dublicate
+              </label>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Author:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="author"
+              id="author-name"
+            />
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- here we are showing the details of project -->
+<div class="container" style="margin-top: 10px">
+  <div class="card">
+    <div class="card-header">By &nbsp; <%=project.author%></div>
+    <div class="card-body">
+      <h5 class="card-title"><%=project.name%></h5>
+
+      <p class="card-text"><%=project.description%></p>
+      <a href="/issue/final-all?id=<%=project._id%>" class="btn btn-primary"
+        >View All Issues</a
+      >
+      <a
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal1"
+        data-bs-whatever="@getbootstrap"
+        >Search Issues</a
+      >
+      <a
+        href=""
+        class="btn btn-primary"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal2"
+        data-bs-whatever="@getbootstrap"
+        >Filter Issues</a
+      >
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <a href="/" class="btn btn-secondary" style="margin-top: 10px">Go Back</a>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal1"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Search Issue</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div class="modal-body">
+        <!-- url for search -->
+        <form
+          action="/issue/search?id=<%=project._id%>
+          "
+          method="POST"
+        >
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">title:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="title"
+              id="recipient-name"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label"
+              >description:</label
+            >
+            <textarea
+              class="form-control"
+              name="description"
+              id="message-text"
+            ></textarea>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Search</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- this is the model to filter -->
+
+<div
+  class="modal fade"
+  id="exampleModal2"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Filter Issue</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form
+          action="/issue/filter?id=<%=project._id%>
+          "
+          method="POST"
+        >
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Labels:</label>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="label"
+                value="bug"
+                id="flexCheckDefault"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                Bug
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="label"
+                value="ui improvements"
+                id="flexCheckChecked"
+              />
+              <label class="form-check-label" for="flexCheckChecked">
+                UI improvements
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="label"
+                value="Documentation"
+                id="flexCheckChecked"
+              />
+              <label class="form-check-label" for="flexCheckChecked">
+                Documentation
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="label"
+                value="Enhancement"
+                id="flexCheckChecked"
+              />
+              <label class="form-check-label" for="flexCheckChecked">
+                Enhancement
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="dublicate"
+                name="label"
+                id="flexCheckChecked"
+              />
+              <label class="form-check-label" for="flexCheckChecked">
+                Dublicate
+              </label>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Author:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="author"
+              id="author-name"
+            />
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">filter</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
