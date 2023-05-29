@@ -8,7 +8,7 @@ router.post("/createissue", issueController.add);
 
 router.post("/search", issueController.search);
 
-router.get("/final-all", issueController.findAll);
+router.get("/find-all", issueController.findAll);
 
 router.post("/filter", issueController.filter);
 
