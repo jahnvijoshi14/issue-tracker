@@ -8,3 +8,5 @@ to start project use: npm start command.
 note :- do install node_modules by npm install.
 
 it will work on :- http://localhost:8000/
+
+we have use express js and mongo db to create this app.
