@@ -11,4 +11,7 @@ it will work on :- http://localhost:8000/
 
 we have use express js and mongo db to create this app.
 
+
+During filter if we add only labels it will filter according to labels , if we add only author it will filter only author but we add both then it will use both to filter that means both condition should be satisfied.
+
 Please note that i have not put any checks since it was not mentioned so , kindly fill all the fields during creating issues and project else it will crash.
