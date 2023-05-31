@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const profile = require("./enviroment");
 if (profile.name === "dev") {
   mongoose.connect("mongodb://localhost:27017/issues");
 
