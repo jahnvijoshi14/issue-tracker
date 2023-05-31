@@ -88,6 +88,7 @@ module.exports.filter = async (req, res) => {
 
   try {
     let data = [];
+
     if (!authorData.trim() && labelData.length > 0) {
       data = await issue
         .find({
@@ -97,7 +98,7 @@ module.exports.filter = async (req, res) => {
           },
         })
         .sort("-createdAt");
-    } else if (labelData.length <= 0 && authorData.trim()) {
+    } else if (!labelData && authorData.trim()) {
       data = await issue
         .find({
           project: id,
