@@ -11,4 +11,4 @@ it will work on :- http://localhost:8000/
 
 we have use express js and mongo db to create this app.
 
-Please note that i have not put any checks since it was not mentioned so , kindly fill all the fields.
+Please note that i have not put any checks since it was not mentioned so , kindly fill all the fields during creating issues and project else it will crash.
