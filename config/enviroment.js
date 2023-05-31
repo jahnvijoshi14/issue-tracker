@@ -6,4 +6,4 @@ const dev = {
   name: "dev",
 };
 
-module.exports = dev;
+module.exports = prod;
