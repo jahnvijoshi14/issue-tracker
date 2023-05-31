@@ -1,9 +1,29 @@
+require("dotenv").config();
+const profile = require("./config/enviroment");
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
-
-const db = require("./config/mongoose");
+let db = "";
+if (profile.name === "dev") {
+  db = require("./config/mongoose");
+}
+const { default: mongoose } = require("mongoose");
 const app = express();
-const port = 8000;
+const port = process.env.PORT || 8000;
+
+// connect to cloud database
+
+if (profile.name === "prod") {
+  mongoose.set("strictQuery", false);
+  db = async () => {
+    try {
+      const conn = await mongoose.connect(process.env.MONGO_URI);
+      console.log(`MongoDB Connected: ${port}`);
+    } catch (error) {
+      console.log(error);
+      process.exit(1);
+    }
+  };
+}
 
 // this is for the form data
 app.use(express.urlencoded());
@@ -21,11 +41,27 @@ app.set("layout extractScripts", true);
 
 app.use("/", require("./routes/project"));
 
-app.listen(port, (err) => {
-  if (err) {
-    console.log(`Error in running the server: ${err}`);
-    return;
-  }
+if (profile.name === "dev") {
+  app.listen(port, (err) => {
+    if (err) {
+      console.log(`Error in running the server: ${err}`);
+      return;
+    }
 
-  console.log(`Server is running on port: ${port}`);
-});
+    console.log(`Server is running on port: ${port}`);
+  });
+}
+
+// this is for deployment
+if (profile.name === "prod") {
+  db().then(() => {
+    app.listen(port, (err) => {
+      if (err) {
+        console.log(`Error in running the server: ${err}`);
+        return;
+      }
+
+      console.log(`Server is running on port: ${port}`);
+    });
+  });
+}
